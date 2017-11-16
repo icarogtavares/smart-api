@@ -1,0 +1,51 @@
+{
+  "name": "smart-api",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel server --out-dir build",
+    "build": "npm run clean && npm run build-server",
+    "start": "node ./build/src/server.js",
+    "dev": "NODE_ENV=development DEBUG=smart-api:* nodemon --exec 'babel-node' ./server/src/server.js",
+    "migrate": "npm run build && sequelize db:migrate",
+    "test": "NODE_ENV=test mocha --opts server/test/integration/mocha.opts server/test/integration/**/*.js",
+    "loadtest": "NODE_ENV=production loadtest http://localhost:3000/URL_HERE -t 30 -c 12 --rps 100"
+  },
+  "author": "Icaro Tavares <icarotavares@live.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "debug": "^3.0.0",
+    "express": "^4.15.4",
+    "helmet": "^3.8.1",
+    "http-status": "^1.0.1",
+    "jsonwebtoken": "^8.1.0",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "ramda": "^0.25.0",
+    "sequelize": "^4.6.0",
+    "throng": "^4.0.0"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.6",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.1",
+    "loadtest": "^2.3.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.11.0",
+    "sequelize-cli": "^3.0.0",
+    "supertest": "^3.0.0",
+    "testdouble": "^3.2.4"
+  }
+}
