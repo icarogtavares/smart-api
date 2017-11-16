@@ -17,6 +17,7 @@ export default (sequelize, DataTypes) => {
   }, {
     timestamps: true,
     updatedAt: false,
+    deletedAt: false,
     paranoid: true
   });
 
