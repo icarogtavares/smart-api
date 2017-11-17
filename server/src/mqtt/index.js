@@ -1,7 +1,7 @@
 import mqtt from 'mqtt'
 import { has } from 'ramda'
 import * as noisesService from '../services/noises'
-
+import * as errorsService from '../services/errors'
 const client = mqtt.connect('mqtt://test.mosquitto.org')
 const TOPIC_NOISE = 'smart/noise'
 
@@ -25,7 +25,7 @@ export const start_connection = () => {
         const hasSoundLevel = has('sound_level');
         const hasError = has('error');
         if(hasSoundLevel(noise)) {
-            noisesService.create(noise);
+            noisesService.create(noise).catch(err => console.log(err));
         } else if(hasError(noise)) {
 
         }
