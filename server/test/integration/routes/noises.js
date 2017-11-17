@@ -5,13 +5,15 @@ const {noise: Noise} = db;
 describe('Routes: Noise', () => {
 
     const fakeNoise = {
-        sound_level: 18.3
+        sound_level: "18.30"
     };
 
     const fakeNoises = [
-        fakeNoise,
         {
-            sound_level: 56.9
+            sound_level: "53.94"
+        },
+        {
+            sound_level: "56.90"
         }
     ]
 
@@ -97,6 +99,7 @@ describe('Routes: Noise', () => {
 
             it("shouldn't update a noise that does not exist", done => {
                 request.put('/noises/999')
+                    .send(fakeNoise)
                     .expect(404, done);
             });
         })

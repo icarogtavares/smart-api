@@ -8,7 +8,7 @@ export const up = (queryInterface, Sequelize) => {
     },
     sound_level: {
       allowNull: false,
-      type: Sequelize.DECIMAL(10,6)
+      type: Sequelize.DECIMAL(6,2)
     },
     created_at: {
       allowNull: false,

@@ -1,9 +1,8 @@
 import { getModel } from '../models'
 
 export const findAll = () => {
-    return getModel('noise')
-      .then(Noise => 
-        Noise.findAll())
+  return getModel('noise')
+    .then(Noise => Noise.findAll())
 }
 
 export const findById = (id) => {

@@ -1,7 +1,7 @@
 export default (sequelize, DataTypes) => {
   let noise = sequelize.define('noise', {
     sound_level: {
-      type: DataTypes.DECIMAL(10,6),
+      type: DataTypes.DECIMAL(6,2),
       allowNull: false,
       validate: {
         notEmpty: true
@@ -10,8 +10,7 @@ export default (sequelize, DataTypes) => {
   }, {
     timestamps: true,
     updatedAt: false,
-    deletedAt: false,
-    paranoid: true
+    deletedAt: false
   });
 
   return noise;
