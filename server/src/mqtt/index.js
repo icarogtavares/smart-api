@@ -2,7 +2,7 @@ import mqtt from 'mqtt'
 import { has, __ } from 'ramda'
 import * as noisesService from '../services/noises'
 import * as errorsService from '../services/errors'
-const client = mqtt.connect('mqtt://' + process.env.MQTT'test.mosquitto.org')
+const client = mqtt.connect('mqtt://' + process.env.MQTT || 'test.mosquitto.org')
 const TOPIC_NOISE = process.env.T || 'SMART/NOISE'
 
 export const start_connection = () => {
