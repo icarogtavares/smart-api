@@ -3,7 +3,7 @@ import { has, __ } from 'ramda'
 import * as noisesService from '../services/noises'
 import * as errorsService from '../services/errors'
 const client = mqtt.connect('mqtt://test.mosquitto.org')
-const TOPIC_NOISE = 'smart/noise'
+const TOPIC_NOISE = 'SMART/NOISE'
 
 export const start_connection = () => {
     client.on('connect', () => {
