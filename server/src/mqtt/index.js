@@ -2,14 +2,12 @@ import mqtt from 'mqtt'
 import { has, __ } from 'ramda'
 import * as noisesService from '../services/noises'
 import * as errorsService from '../services/errors'
-const client = mqtt.connect('mqtt://test.mosquitto.org')
-const TOPIC_NOISE = 'SMART/NOISE'
+const client = mqtt.connect('mqtt://' + process.env.MQTT'test.mosquitto.org')
+const TOPIC_NOISE = process.env.T || 'SMART/NOISE'
 
 export const start_connection = () => {
     client.on('connect', () => {
         client.subscribe(TOPIC_NOISE)
-        client.publish(TOPIC_NOISE, "{\"sound_level\": 999}")
-        client.publish(TOPIC_NOISE, "{\"error\": -2}")
     })
 
     client.on('message', (topic, message) => {

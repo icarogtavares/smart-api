@@ -2,7 +2,7 @@ import { getConfig } from './index'
 
 let config = getConfig({
     development: {
-        username: process.env.DB_USERNAME || "root",
+        username: process.env.DB_USERNAME || "almada",
         password: process.env.DB_PASSWORD || "root",
         database: process.env.DB_NAME || "smart",
         host: process.env.DB_HOST || "127.0.0.1",
