@@ -9,7 +9,8 @@ export default (sequelize, DataTypes) => {
         }
       },
       count: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     }, {timestamps: false});
   

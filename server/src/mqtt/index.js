@@ -21,12 +21,14 @@ export const start_connection = () => {
     })
 
     function handleTopicNoise (message) {
-        const jsonMessage = JSON.parse(message.toString());
-        const messageHas = has(__, jsonMessage);
+        const messageJson = JSON.parse(message.toString());
+        const messageHas = has(__, messageJson);
         if(messageHas('sound_level')) {
-            noisesService.create(jsonMessage).catch(err => console.log(err));
+            noisesService.create(messageJson).catch(err => console.log(err));
         } else if(messageHas('error')) {
-            console.log(jsonMessage)
+            messageJson.code = messageJson.error;
+            delete messageJson.error;
+            errorsService.increment(messageJson).catch(err => console.log(err));
         }
     
     }

@@ -1,4 +1,6 @@
 import { getModel } from '../models'
+import { isNil } from 'ramda'
+import * as Promise from 'bluebird'
 
 export const findAll = () => {
   return getModel('error')
@@ -15,9 +17,13 @@ export const create = (data) => {
     .then(Error => Error.create(data))
 }
 
-export const increment = (code) => {
-  return getModel('error')
-    .then(Error => 
-      Error.findById(code))
-    .then(error => error.increment('code', {by: 1}))
+export const increment = (errorObject) => {
+  return findByCode(errorObject.code)
+    .then(error => {
+      if(isNil(error)) {
+        return create(errorObject);
+      }
+      return error;
+    })
+    .then(error => error.increment('count', {by: 1}));
 }
