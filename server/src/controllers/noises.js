@@ -1,5 +1,11 @@
-import { assoc, equals, isNil } from 'ramda'
+import { head, assoc, equals, isNil } from 'ramda'
 import * as noisesService from '../services/noises'
+
+export const getAverageSoundLevel = (req, res, next) => {
+  noisesService.getAverageSoundLevel()
+    .then(avg => res.send(head(avg)))
+    .catch(err => next(assoc('status', 400, err)));
+}
 
 export const findAll = (req, res, next) => {
   noisesService.findAll()
