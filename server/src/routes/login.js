@@ -7,6 +7,7 @@ const router = express.Router();
 router.route('/')
   .post(usersController.login)
   
+//Rota de teste de autenticação
 router.route('/')
   .get(auth().authenticate(), (req, res, next) => res.send('Auth test OK!'))
 

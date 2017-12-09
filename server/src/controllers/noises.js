@@ -30,10 +30,7 @@ export const save = (req, res, next) => {
 
 export const update = (req, res, next) => {
   noisesService.update(req.params.id, req.body)
-    .then(rowsAffected => {
-      console.log(rowsAffected)
-      equals(rowsAffected[0], 0) ? next() : res.sendStatus(200);
-    })
+    .then(rowsAffected => equals(rowsAffected[0], 0) ? next() : res.sendStatus(200))
     .catch(err => next(assoc('status', 400, err)))
 }
 

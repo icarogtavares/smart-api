@@ -42,12 +42,12 @@ export const login = (req, res, next) => {
       if(compareSync(req.body.password, user.password)) {
         const payload = { id : user.id };
         const token = jwt.sign(payload, cfg.security.jwtSecret, {expiresIn: '7d'});
-        usersService.updateToken(user.id, token)
+        return usersService.updateToken(user.id, token)
           .then(rowsAffected => {
             if(equals(rowsAffected[0], 0)) {
               throw new Error('Usuário não encontra-se mais no banco.')
             }
-            res.send({token: token})
+            res.send({token: token});
           })
       } else {
         throw new Error('Invalid password')
