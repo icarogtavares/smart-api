@@ -10,5 +10,5 @@ export const startApp = (id) => {
     smartDebug(`Listening on port ${app.get('port')}`);
   });
 
-  mqtt.start_connection();
+  mqtt.startConnection();
 }
